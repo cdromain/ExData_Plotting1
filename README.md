@@ -81,7 +81,9 @@ My four R scripts - plot1.R, plot2.R, plot3.R and plot4.R - all require the [Lub
 
 3. Convert the *Date* and *Time* variables into POSIXct variables and then merge them into a new single column called *dateTime* using the ```paste``` function and the ```dmy_hms``` function from the [Lubridate package](https://cran.r-project.org/web/packages/lubridate/index.html). After that the two original columns are removed from the data set.
 
-4. Select the relevant time range in the data set, keeping only the rows related to the 1st and 2nd of February 2007 as stated in the project instructions. The resulting tidy data set has 2 880 rows (1 440 observations per day) and 8 columns (as the 2 original date and time columns were merged).
+4. Select the relevant time range in the data set, keeping only the rows related to the 1st and 2nd of February 2007 as stated in the project instructions.      
+          
+The resulting tidy data set is called **hhpowcon12** (for **h**ouse**h**old **pow**er **con**sumption on the **1**st and **2**nd of February 2007) and has 2 880 rows (1 440 observations per day) and 8 columns (as the 2 original date and time columns were merged).
 
 
 # Plotting
