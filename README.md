@@ -10,11 +10,11 @@ output:
     highlight: tango
 ---
 
-# Project description
+# Project and data description
 
-This project is part of the [Exploratory Data Analysis](https://class.coursera.org/exdata-034/) 4-weeks online course offered by the [Johns Hopkins Bloomberg School of Public Health](http://www.jhsph.edu/) (Baltimore, USA) on [Coursera](https://www.coursera.org). [Getting and Cleaning Data](https://class.coursera.org/getdata-033/) is the fourth course of the 11-months [JH Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1). 
+This project is part of the [Exploratory Data Analysis](https://class.coursera.org/exdata-034/) 4-weeks online course offered by the [Johns Hopkins Bloomberg School of Public Health](http://www.jhsph.edu/) (Baltimore, USA) on [Coursera](https://www.coursera.org). [Exploratory Data Analysis](https://class.coursera.org/exdata-034/) is the fourth course of the 11-months [JH Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1). 
 
-This assignment uses data from the [UC Irvine Machine Learning Repository](http://archive.ics.uci.edu/ml/), a popular repository for machine learning datasets. In particular, this project is focusing on the "Individual household electric power consumption Data Set" available [here](https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip) [20Mb].   
+This assignment uses data from the [UC Irvine Machine Learning Repository](http://archive.ics.uci.edu/ml/) and focuses on the "Individual household electric power consumption Data Set" available [here](https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip) [20Mb].   
     
 This dataset contains 2 075 259 measurements (i.e. rows) of electric power consumption gathered in one household with a one-minute sampling rate over a period of 47 months, between December 2006 and November 2010. 9 different electrical quantities and some sub-metering values are available, hence the 9 columns in the dataset. The following descriptions of the 9 variables in the dataset are taken from
 the [UCI web site](https://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption) :
@@ -70,40 +70,40 @@ The script was ran using ```source("download.R")```.
 
 # Loading and processing the data
 
-My four R scripts - plot1.R, plot2.R, plot3.R and plot4.R - are all available in my [GitHub repo](https://github.com/cdromain/ExData_Plotting1). They all require the [Lubridate package](https://cran.r-project.org/web/packages/lubridate/index.html) to deal with dates and times. The four scripts follow a common loading and processing path :
+My four R scripts - plot1.R, plot2.R, plot3.R and plot4.R - all require the [Lubridate package](https://cran.r-project.org/web/packages/lubridate/index.html) to be installed. The four scripts all follow a common loading and processing path :
 
-1. Read the data txt file into an R data.frame using the read.table function as follows :
+1. Read the data .txt file into an R data frame using the ```read.table``` function as follows :
 
 ```read.table(file = "./data/household_power_consumption.txt", header = TRUE, 
               sep = ";", na.strings = "?", stringsAsFactors = FALSE)```
 
 2. Convert the three *Sub_metering* columns to integer using the ```as.integer``` function
 
-3. Convert the *Date* and *Time* variables into POSIXct variables and then merge them into a new single column called *dateTime* using the ```paste``` function and the ```dmy_hms``` function from Lubridate. After that the two original columns are removed from the data set.
+3. Convert the *Date* and *Time* variables into POSIXct variables and then merge them into a new single column called *dateTime* using the ```paste``` function and the ```dmy_hms``` function from the [Lubridate package](https://cran.r-project.org/web/packages/lubridate/index.html). After that the two original columns are removed from the data set.
 
 4. Select the relevant time range in the data set, keeping only the rows related to the 1st and 2nd of February 2007 as stated in the project instructions. The resulting tidy data set has 2 880 rows (1 440 observations per day) and 8 columns (as the 2 original date and time columns were merged).
 
 
 # Plotting
 
-Once the data is loaded and processed the plotting can begin. Our overall goal here was simply to examine how household energy usage varied over a 2-day period in February, 2007 (2007-02-01 and 2007-02-02) and to reconstruct 4 plots using R base plotting system.
+Once the data is loaded and processed the plotting can begin. Our overall goal here was to examine how household energy usage varied over a 2-day period in February 2007 (2007-02-01 and 2007-02-02) and to reconstruct 4 plots using R base plotting system.
 
 First we were asked to fork and clone the following GitHub repository:
 [https://github.com/rdpeng/ExData_Plotting1](https://github.com/rdpeng/ExData_Plotting1)
 
 Then for each plot we were asked to :
 
-- Construct the plot and save it as a PNG file with a width of 480 pixels and a height of 480 pixels.
+- Construct the plot and save it as a PNG file with a width and a height of 480 pixels
 
 - Name each of the plot files as `plot1.png`, `plot2.png`, etc.
 
-- Create a separate R code file (`plot1.R`, `plot2.R`, etc.) that constructs the corresponding PNG plot, including the code which was used for reading the data so that the plot can be fully reproduced.
+- Create a separate R code file (`plot1.R`, `plot2.R`, etc.) that constructs the corresponding PNG plot, including the code which was used for reading the data so that the plot can be fully reproduced
 
 - Add the PNG file and R code file to our GitHub repository
 
 # My plots :
 
-The four plots that I constructed for the project are shown below along with the corresponding plotting R code (the PNG and R files are also available in my [GitHub repo](https://github.com/cdromain/ExData_Plotting1)) :
+The four plots that I constructed for the project are shown below along with the corresponding plotting R code (the PNG and R files are also available here in my [GitHub repo](https://github.com/cdromain/ExData_Plotting1)) :
 
 
 ## Plot 1
@@ -187,4 +187,6 @@ The four plots that I constructed for the project are shown below along with the
 
 # Additional information
 
-This analysis was done in RStudio 0.99.467 (R version 3.2.2 (2015-08-14) -- "Fire Safety") on Mac OSX 10.10.5.
+- My R version being in French, I had to change programatically my locale settings to English so the days of the week could be displayed in English in my plots, just like in the plots we had to reconstruct. For that I used the ```Sys.setlocale``` function along with the ```"LC_TIME"``` argument. My scripts end by restoring the locale settings to their original French values that were stored in a temporary variable.
+
+- This analysis was done in RStudio 0.99.467 (R version 3.2.2 (2015-08-14) -- "Fire Safety") on Mac OSX 10.10.5.
